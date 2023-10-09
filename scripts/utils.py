@@ -18,8 +18,35 @@ MODELS_DIR = DIRECTORY_ABOVE_BASE.joinpath('models')
 DATA_DIR = DIRECTORY_ABOVE_BASE.joinpath('data')
 
 current_date = datetime.today().strftime('%Y%m%d')
-DOPPLER_DIR = DATA_DIR.joinpath('doppler', current_date)
-DOPPLER_DIR.mkdir(parents=True, exist_ok=True)
+
+current_date = datetime.today().strftime('%Y%m%d')
+base_doppler_dir = DATA_DIR.joinpath('doppler', current_date)
+
+# Ensure the base doppler directory exists
+if not base_doppler_dir.exists():
+    base_doppler_dir.mkdir(parents=True)
+
+# Get the current run directories
+existing_runs = [d for d in base_doppler_dir.iterdir() if d.is_dir() and "run_" in d.name]
+existing_run_numbers = sorted([int(d.name.split("_")[-1]) for d in existing_runs])
+
+# Determine the next run number
+if existing_run_numbers:
+    next_run = existing_run_numbers[-1] + 1
+else:
+    next_run = 1
+
+# Create the new run directory
+new_run_dir = base_doppler_dir.joinpath(f'run_{next_run}')
+new_run_dir.mkdir(parents=True, exist_ok=True)
+DOPPLER_DIR = new_run_dir
+
+# Create the new run directory
+# DOPPLER_DIR = base_doppler_dir.joinpath(f'run_{next_run}')
+# DOPPLER_DIR.mkdir(parents=True, exist_ok=True)
+#
+# DOPPLER_DIR = DATA_DIR.joinpath('doppler', current_date)
+# DOPPLER_DIR.mkdir(parents=True, exist_ok=True)
 # DOPPLER_DIR = DATA_DIR.joinpath('doppler')
 
 
