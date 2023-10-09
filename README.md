@@ -37,7 +37,7 @@ This project highlights a computer vision algorithm based on an artificial neura
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/doppler-radar-analysis.git
+   git clone https://github.com/bhyleee/bats_doppler_test.git
    cd doppler-radar-analysis
    
 2. Set up the conda environment
