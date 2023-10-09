@@ -30,7 +30,7 @@ This project highlights a computer vision algorithm based on an artificial neura
 
 ## Prerequisites
 
-- Python 3.x
+- Python 3.10.8
 - Conda (recommended for environment management)
 
 ## Installation and Setup
