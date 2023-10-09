@@ -1,9 +1,9 @@
 import argparse
-from download import download
+
 from classify import classify
+from download import download
 # from aggregate import aggregate_date
 from utils import *
-import os
 
 
 def main(start_date, end_date, tower, hours, start_time):
