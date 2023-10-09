@@ -9,9 +9,10 @@ import shutil
 from utils import *
 
 
-def download(date_start, date_end, TOWER):
-    start_date = date(date_start)
-    end_date = date(date_end)
+def download(date_start, date_end, TOWER, hours):
+    start_date = datetime.strptime(date_start, '%Y-%m-%d').date()
+    print(start_date)
+    end_date = datetime.strptime(date_end, '%Y-%m-%d').date()
     current_date = datetime.today().strftime('%Y%m%d')
     DOPPLER_DIR = DATA_DIR.joinpath('doppler', current_date)
     DOPPLER_DIR.mkdir(parents=True, exist_ok=True)
@@ -25,7 +26,7 @@ def download(date_start, date_end, TOWER):
 
         # Make temp directory and close when done
         templocation = tempfile.mkdtemp()
-        results = download_raw(single_date, TOWER, 'US/Pacific', templocation)
+        results = download_raw(single_date, TOWER, 'US/Pacific', templocation, hours)
 
         for i, scan in enumerate(results.iter_success(), start=1):
             file = scan.scan_time.strftime('%Y%m%d_%H%M')
@@ -45,7 +46,7 @@ def download(date_start, date_end, TOWER):
                 for i in os.listdir(RAWDIR):
 
                     # match scenes from same time and combine in file.
-                    if os.path.isfile(os.path.join(RAWDIR, i)) and str(file) in i:
+                    if (RAWDIR / i).is_file() and str(file) in i:
                         file_list.append(i)
                 file_list.sort()
                 print(file_list)
@@ -78,4 +79,5 @@ def download(date_start, date_end, TOWER):
         shutil.rmtree(templocation)
 
         # os.chdir(YEARDIR)
+    return DOPPLER_DIR
 

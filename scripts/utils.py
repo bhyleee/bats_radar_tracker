@@ -13,8 +13,10 @@ from datetime import datetime, date, timedelta
 # from tensorflow import keras
 
 BASE_DIR = pathlib.Path(__file__).parent.parent  # points to the 'scripts' directory
-MODELS_DIR = BASE_DIR.joinpath('..', 'models')
-DATA_DIR = BASE_DIR.joinpath('..', 'data')
+DIRECTORY_ABOVE_BASE = BASE_DIR.parent
+MODELS_DIR = DIRECTORY_ABOVE_BASE.joinpath('models')
+DATA_DIR = DIRECTORY_ABOVE_BASE.joinpath('data')
+DOPPLER_DIR = DATA_DIR.joinpath('doppler')
 
 
 def create_date_directories(single_date):
@@ -27,13 +29,15 @@ def create_date_directories(single_date):
     Returns:
     - tuple: A tuple containing paths for the main date directory, raw data directory, scan aggregate directory, and daily aggregate directory.
     """
-    DATEDIR = pathlib.Path(DATA_DIR + '/' + str(single_date))
+    DATEDIR = DOPPLER_DIR.joinpath(str(single_date))
     DATEDIR.mkdir(parents=True, exist_ok=True)
-    RAWDIR = pathlib.Path(DATA_DIR + '/' + str(single_date) + '/1_raw/')
+    RAWDIR = DOPPLER_DIR.joinpath(str(single_date), '/1_raw/')
     RAWDIR.mkdir(parents=True, exist_ok=True)
-    AGGSCANDIR = pathlib.Path(DATA_DIR + '/' + str(single_date) + '/2_scan_agg/')
+    AGGSCANDIR = DOPPLER_DIR.joinpath(str(single_date), '/2_scan_agg/')
     AGGSCANDIR.mkdir(parents=True, exist_ok=True)
-    AGGDIR = pathlib.Path(DATA_DIR + '/' + str(single_date) + '/3_daily_agg/')
+    # CLASSDIR = pathlib.Path(DATA_DIR + '/' + str(single_date) + '/3_daily_class/')
+    # CLASSDIR.mkdir(parents=True, exist_ok=True)
+    AGGDIR = DOPPLER_DIR.joinpath(str(single_date), '/3_daily_agg/')
     AGGDIR.mkdir(parents=True, exist_ok=True)
 
     return DATEDIR, RAWDIR, AGGSCANDIR, AGGDIR
@@ -54,7 +58,7 @@ def return_daterange(start_date, end_date):
         yield start_date + timedelta(n)
 
 
-def download_raw(start_date, tower, time_zone, templocation):
+def download_raw(start_date, tower, time_zone, templocation, hours):
     """
     Downloads raw weather radar data for a given date and tower.
 
@@ -73,7 +77,7 @@ def download_raw(start_date, tower, time_zone, templocation):
     start_date1 = datetime.strptime(startdatetime, "%Y%m%d%H%M")
 
     # download entire evening's worth of data
-    end_date = start_date1 + timedelta(hours=12)
+    end_date = start_date1 + timedelta(hours=hours)
 
     conn = nexradaws.NexradAwsInterface()
     # Download data
@@ -326,7 +330,7 @@ def classify_image(new_image, file, model, normalizer, classdir):
             dst.write(prediction.astype(rio.float32), 1)
 
 
-def aggregate_date(data_directory, date):
+def aggregate_date(data_directory, output_directory):
     """
     Aggregates radar data for a specific date.
 
@@ -356,8 +360,8 @@ def aggregate_date(data_directory, date):
         print(arr1.shape)
 
     # Create aggregate file
-    date_file = str(date) + '_new_aggregate.tif'
-    with rio.open(date_file, 'w', **meta) as dst:
+    aggregate_file = output_directory + '_new_aggregate.tif'
+    with rio.open(aggregate_file, 'w', **meta) as dst:
         dst.write(arr1)
 
     for id, layer in enumerate(merge_dir, start=1):
@@ -370,8 +374,8 @@ def aggregate_date(data_directory, date):
                 print(array1.shape)
                 # print('src 1 is ' + src1)
                 # with rasterio.open('test.tif', 'w', **meta) as dst:
-                array = rio.open(date_file)
-                print('aggregate file is ' + date_file)
+                array = rio.open(aggregate_file)
+                print('aggregate file is ' + aggregate_file)
                 array0 = array.read(1)
                 # array0 = np.where(array0 > 0.1, 1, 0)
 
@@ -382,7 +386,7 @@ def aggregate_date(data_directory, date):
                 print('added files')
                 array.close()
 
-                with rio.open(date_file, 'w', **meta) as dst:
+                with rio.open(aggregate_file, 'w', **meta) as dst:
                     dst.write(new_array)
         else:
             pass

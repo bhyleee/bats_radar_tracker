@@ -5,4 +5,8 @@ import glob
 import os
 from utils import *
 
-aggregate_date(os.getcwd(), 2018)
+def main_aggregate(YEAR: object) -> object:
+    aggregate_date(data_directory, YEAR)
+
+if __name__ == "__main__":
+    main_aggregate()
