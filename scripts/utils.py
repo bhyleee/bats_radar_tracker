@@ -54,7 +54,7 @@ def return_daterange(start_date, end_date):
         yield start_date + timedelta(n)
 
 
-def download_raw(start_date, tower, time_zone):
+def download_raw(start_date, tower, time_zone, templocation):
     """
     Downloads raw weather radar data for a given date and tower.
 

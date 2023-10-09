@@ -25,7 +25,7 @@ def download(date_start, date_end, TOWER):
 
         # Make temp directory and close when done
         templocation = tempfile.mkdtemp()
-        results = download_raw(single_date, TOWER, 'US/Pacific')
+        results = download_raw(single_date, TOWER, 'US/Pacific', templocation)
 
         for i, scan in enumerate(results.iter_success(), start=1):
             file = scan.scan_time.strftime('%Y%m%d_%H%M')
@@ -78,3 +78,4 @@ def download(date_start, date_end, TOWER):
         shutil.rmtree(templocation)
 
         # os.chdir(YEARDIR)
+
