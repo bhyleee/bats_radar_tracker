@@ -1,7 +1,17 @@
 # BATS: Bat-aggregated time series
 # Doppler Radar Data Pipeline
 
-This project aims to download, process, and classify Doppler radar data. The pipeline consists of downloading raw radar scans, classifying the data using a trained model, and then aggregating the results.
+BATS: Bat-aggregated time series
+
+BATS is a Python-based algorithm that identifies Mexican free-tailed bats in weather radar data. BATS downloads, processes, and classifies large amounts of NOAA NEXRAD Weather Radar data using a pre-trained neural network.
+
+alt text![68747470733a2f2f7777772e6e70732e676f762f636176652f706c616e796f757276697369742f696d616765732f44534330343937352e4a50473f6d617877696474683d363530266175746f726f746174653d66616c7365](https://github.com/bhyleee/bats_doppler_test/assets/15572692/fa614baf-ef07-47ab-adb6-61044697df23)
+
+Background
+
+Mexican free-tailed bats (commonly referred to as Brazillian free-tailed bats) are a common bat species found across much of North and South America. Due to their voracious appetite and large roosting numbers, free-tailed bats are believed to provide invaluable ecosystem services in the form of pest control.
+
+This project highlights a computer vision algorithm based on an artificial neural network that quantifies the occurence of free-tailed bats over a given area within a given time frame.
 
 ## Table of Contents
 - [Features](#features)
