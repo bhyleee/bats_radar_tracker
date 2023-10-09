@@ -15,11 +15,11 @@ def download(date_start, date_end, TOWER, hours, start_time):
     end_date = datetime.strptime(date_end, '%Y-%m-%d').date()
     # Loop through individual dates, create directories, and apply functions.
     for single_date in return_daterange(start_date, end_date):
-        prospective_datedir = DOPPLER_DIR.joinpath(single_date.strftime("%Y%m%d"))
-
-        if prospective_datedir.exists():
-            print(f"Data directory for {single_date.strftime('%Y%m%d')} already exists. Skipping download step.")
-            continue
+        # prospective_datedir = DOPPLER_DIR.joinpath(single_date.strftime("%Y%m%d"))
+        #
+        # if prospective_datedir.exists():
+        #     print(f"Data directory for {single_date.strftime('%Y%m%d')} already exists. Skipping download step.")
+        #     continue
 
         DATEDIR, RAWDIR, AGGSCANDIR, AGGDIR = create_date_directories(DOPPLER_DIR, single_date.strftime("%Y%m%d"))
     #

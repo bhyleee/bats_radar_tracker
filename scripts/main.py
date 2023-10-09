@@ -8,7 +8,7 @@ import os
 
 def main(start_date, end_date, tower, hours, start_time):
     print("script is starting")
-    start_date_str=start_date.replace("-", "")
+    start_date_str = start_date.replace("-", "")
     # Step 1: Download data
     # Path to where you expect the downloaded data to reside
     # expected_data_dir = DOPPLER_DIR.joinpath(str(start_date_str)) # Modify accordingly if different
