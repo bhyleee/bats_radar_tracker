@@ -41,8 +41,8 @@ if __name__ == "__main__":
     parser.add_argument('start_date', type=str, help='Start date in the format YYYY-MM-DD')
     parser.add_argument('end_date', type=str, help='End date in the format YYYY-MM-DD')
     parser.add_argument('tower', type=str, help='The radar tower ID')
-    parser.add_argument('--hours', type=int, default=12, help='Number of hours (default is 12).')
-    parser.add_argument('--start_time', type=int, default=1900, help='Start time default is 7pm (1900).')
+    parser.add_argument('--hours', type=int, default=10, help='Number of hours (default is 12).')
+    parser.add_argument('--start_time', type=int, default=2000, help='Start time default is 7pm (1900).')
 
     args = parser.parse_args()
 
