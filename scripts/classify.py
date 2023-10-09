@@ -39,20 +39,21 @@ def normal_data(training_df):
     normalizer.adapt(train_features, batch_size=32)
     return normalizer
 
-training_data_path = DATA_DIR.joinpath('reference','california_data.csv')
+training_data_path = DATA_DIR.joinpath('reference', 'california_data.csv')
 normalizer = normal_data(training_data_path)
 
 # classdir = pathlib.Path('/Volumes/backupdata/doppler/data/classified')
 
-def classify(rootdir):
+def classify(rootdir, classify_dir):
     for root, dirs, files in os.walk(rootdir):
-        for file in files:
-            if file.endswith('.tif'):
-                # print(file)
-                classified_file = 'classified_' + file
-                image_file = (os.path.join(classdir, classified_file))
-                # print(image_file)
-                if os.path.exists(image_file) == False:
-                    image_file2 = (os.path.join(root, file))
-                    # print('image does not exist')
-                    classify_image(image_file2, file, model, normalizer, classdir)
+        if '2_scan_agg' in root:
+            for file in files:
+                if file.endswith('.tif'):
+                    # print(file)
+                    classified_file = 'classified_' + file
+                    image_file = (os.path.join(classify_dir, classified_file))
+                    # print(image_file)
+                    if os.path.exists(image_file) == False:
+                        image_file2 = (os.path.join(root, file))
+                        # print('image does not exist')
+                        classify_image(image_file2, file, model, normalizer, classify_dir)

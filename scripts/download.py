@@ -9,24 +9,31 @@ import shutil
 from utils import *
 
 
-def download(date_start, date_end, TOWER, hours):
+def download(date_start, date_end, TOWER, hours, start_time):
     start_date = datetime.strptime(date_start, '%Y-%m-%d').date()
     print(start_date)
     end_date = datetime.strptime(date_end, '%Y-%m-%d').date()
-    current_date = datetime.today().strftime('%Y%m%d')
-    DOPPLER_DIR = DATA_DIR.joinpath('doppler', current_date)
-    DOPPLER_DIR.mkdir(parents=True, exist_ok=True)
-    YEAR_DIR = DOPPLER_DIR.joinpath(str(start_date.strftime('%Y')))
-    YEAR_DIR.mkdir(parents=True, exist_ok=True)
-
     # Loop through individual dates, create directories, and apply functions.
     for single_date in return_daterange(start_date, end_date):
-        DATEDIR, RAWDIR, AGGSCANDIR, AGGDIR = create_date_directories(single_date.strftime("%Y%m%d"))
-        # print(RAWDIR)
+        prospective_datedir = DOPPLER_DIR.joinpath(single_date.strftime("%Y%m%d"))
+
+        if prospective_datedir.exists():
+            print(f"Data directory for {single_date.strftime('%Y%m%d')} already exists. Skipping download step.")
+            continue
+
+        DATEDIR, RAWDIR, AGGSCANDIR, AGGDIR = create_date_directories(DOPPLER_DIR, single_date.strftime("%Y%m%d"))
+    #
+    #     # Check if the expected data files for this date are present in AGGSCANDIR
+    #     expected_files_pattern = f"{single_date.strftime('%Y%m%d')}_*.tif"
+    #     expected_files = list(AGGSCANDIR.glob(expected_files_pattern))
+    #
+    #     if expected_files:
+    #         print(f"Data files for {single_date.strftime('%Y%m%d')} already present. Skipping download step.")
+    #         continue
 
         # Make temp directory and close when done
         templocation = tempfile.mkdtemp()
-        results = download_raw(single_date, TOWER, 'US/Pacific', templocation, hours)
+        results = download_raw(single_date, TOWER, 'US/Pacific', templocation, hours, start_time)
 
         for i, scan in enumerate(results.iter_success(), start=1):
             file = scan.scan_time.strftime('%Y%m%d_%H%M')
@@ -78,6 +85,6 @@ def download(date_start, date_end, TOWER, hours):
 
         shutil.rmtree(templocation)
 
-        # os.chdir(YEARDIR)
+            # os.chdir(YEARDIR)
     return DOPPLER_DIR
 
