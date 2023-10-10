@@ -66,6 +66,8 @@ For the purposes of demonstration, a sample dataset is included in the data/ dir
 
 ## Model Information
 
+Various popular machine learning algorithms were considered for this purpose, including Support Vector Machines, Random Forest, and Neural Networks. Ultimately the neural network was chosen for the final model. These exploratory model may be trained and tested in the attached jupyter notebooks.
+
 Our classification task leverages a traditional Artificial Neural Network (ANN) constructed using the Keras Python Deep Learning package from Google’s Tensorflow library. The classifier processes input as a single pixel from the mentioned cartesian grid, essentially a six-dimensional vector of radar data.
 
 Following the methods of Chilson et al. (2019) and Zewdie et al. (2019) – who utilized neural networks for tracking purple martins and pollen via NEXRAD respectively – we've structured our classifier as a feed-forward, fully-connected network. It's comprised of:
