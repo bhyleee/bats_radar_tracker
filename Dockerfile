@@ -28,6 +28,7 @@ RUN conda env create -f environment.yml
 # Activate the conda environment
 SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
 
+#let this work
 # Your other Dockerfile commands, such as CMD or ENTRYPOINT, go here
 COPY /data /app/data
 COPY /models /app/models
