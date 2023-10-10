@@ -4,7 +4,7 @@ FROM python:3.10.8
 WORKDIR /app
 
 # Installing git
-RUN apt-get update && apt-get install -y git
+RUN apt-get update && apt-get install -y git wget
 
 # Cloning your GitHub repository
 RUN git clone https://github.com/bhyleee/bats_doppler_pipeline.git
