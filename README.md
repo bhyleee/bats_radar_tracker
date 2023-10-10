@@ -30,14 +30,14 @@ This project highlights a computer vision algorithm based on an artificial neura
 
 ## Prerequisites
 
-- Python 3.x
+- Python 3.10.8
 - Conda (recommended for environment management)
 
 ## Installation and Setup
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/doppler-radar-analysis.git
+   git clone https://github.com/bhyleee/bats_doppler_test.git
    cd doppler-radar-analysis
    
 2. Set up the conda environment
@@ -65,6 +65,8 @@ For the purposes of demonstration, a sample dataset is included in the data/ dir
 
 
 ## Model Information
+
+Various popular machine learning algorithms were considered for this purpose, including Support Vector Machines, Random Forest, and Neural Networks. Ultimately the neural network was chosen for the final model. These exploratory model may be trained and tested in the attached jupyter notebooks.
 
 Our classification task leverages a traditional Artificial Neural Network (ANN) constructed using the Keras Python Deep Learning package from Google’s Tensorflow library. The classifier processes input as a single pixel from the mentioned cartesian grid, essentially a six-dimensional vector of radar data.
 
