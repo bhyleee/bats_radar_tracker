@@ -28,7 +28,7 @@ RUN ls -la /app/bats_doppler_pipeline/
 RUN $HOME/miniforge/bin/conda env create -f environment.yml
 
 # Activate the conda environment
-SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
+SHELL ["conda", "run", "-n", "new_doppler_bats", "/bin/bash", "-c"]
 
 # Switch to your repo's scripts directory
 #WORKDIR /app/bats_doppler_pipeline/scripts
