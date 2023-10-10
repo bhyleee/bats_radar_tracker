@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y git wget
 RUN git clone https://github.com/bhyleee/bats_doppler_pipeline.git
 
 # Switch to your repo's scripts directory
-#WORKDIR /app/bats_doppler_pipeline/scripts
+WORKDIR /app/bats_doppler_pipeline/scripts
 
 # Fetch the Miniconda3 Linux installer
 RUN wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh -O miniforge.sh
@@ -31,7 +31,7 @@ RUN $HOME/miniforge/bin/conda env create -f environment.yml
 SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
 
 # Switch to your repo's scripts directory
-WORKDIR /app/bats_doppler_pipeline/scripts
+#WORKDIR /app/bats_doppler_pipeline/scripts
 
 #let this work
 # Your other Dockerfile commands, such as CMD or ENTRYPOINT, go here
