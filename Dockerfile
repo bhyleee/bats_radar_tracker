@@ -7,23 +7,21 @@ WORKDIR /app
 RUN apt-get update && apt-get install -y git
 
 # Cloning your GitHub repository
-RUN git clone https://github.com/bhyleee/bats_doppler_test.git
+RUN git clone https://github.com/bhyleee/bats_doppler_pipeline.git
 
 # Switch to your repo's scripts directory
-WORKDIR /app/bats_doppler_test/scripts
+WORKDIR /app/bats_doppler_pipeline/scripts
 
 # Fetch the Miniconda3 Linux installer
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh
-
-# Run the installer
-RUN bash miniconda.sh -b -p $HOME/miniconda && \
-    rm miniconda.sh
+RUN wget https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-aarch64.sh -O miniforge.sh
+RUN bash miniforge.sh -b -p $HOME/miniforge && \
+    rm miniforge.sh
 
 # Add Miniconda to PATH
 ENV PATH="$HOME/miniconda/bin:$PATH"
 
 # Create the conda environment using the environment.yml file
-RUN conda env create -f environment.yml
+RUN $HOME/miniforge/bin/conda env create -f environment.yml
 
 # Activate the conda environment
 SHELL ["conda", "run", "-n", "myenv", "/bin/bash", "-c"]
