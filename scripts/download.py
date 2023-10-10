@@ -2,9 +2,9 @@
 
 import os
 import pathlib
-import tempfile
 from datetime import datetime, date
 import rasterio as rio
+import tempfile
 import shutil
 from utils import *
 
@@ -62,12 +62,10 @@ def download(date_start, date_end, TOWER, hours, start_time):
                 with rio.open(file_list[0]) as src0:
                     meta = src0.meta
 
-                # print('read metadata')
 
                 # Update meta to reflect the number of layers
                 meta.update(count=len(file_list))
 
-                # print('updated metadata')
                 print(file_list)
 
                 # Read each layer and write it to stack
@@ -77,14 +75,11 @@ def download(date_start, date_end, TOWER, hours, start_time):
                         with rio.open(layer) as src1:
                             dst.write_band(id, src1.read(1))
 
-                # file.close()
 
             except:
                 print(file + ' did not work')
-                # file.close()
 
         shutil.rmtree(templocation)
 
-            # os.chdir(YEARDIR)
     return DOPPLER_DIR
 

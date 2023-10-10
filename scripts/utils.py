@@ -7,10 +7,10 @@ import pandas as pd
 import rasterio as rio
 import pathlib
 from datetime import datetime, date, timedelta
-# import shutil
-# import tempfile
-# import tensorflow as tf
-# from tensorflow import keras
+import shutil
+import tempfile
+import tensorflow as tf
+from tensorflow import keras
 
 BASE_DIR = pathlib.Path(__file__).parent.parent  # points to the 'scripts' directory
 DIRECTORY_ABOVE_BASE = BASE_DIR.parent
