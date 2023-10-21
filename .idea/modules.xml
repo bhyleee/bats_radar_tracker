@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/bats_doppler_test.iml" filepath="$PROJECT_DIR$/.idea/bats_doppler_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/bats_doppler_pipeline.iml" filepath="$PROJECT_DIR$/.idea/bats_doppler_pipeline.iml" />
     </modules>
   </component>
 </project>
