@@ -1,7 +1,7 @@
 import pytest
 import pathlib
 from datetime import datetime, date, timedelta
-from scripts.utils import *
+from ..scripts.utils import *
 
 def test_create_date_directories(tmp_path):
     DOPPLER_DIR = tmp_path

@@ -3,8 +3,6 @@
 
 BATS is a Python-based algorithm that identifies Mexican free-tailed bats in weather radar data. BATS downloads, processes, and classifies large amounts of NOAA NEXRAD Weather Radar data using a pre-trained neural network.
 
-![68747470733a2f2f7777772e6e70732e676f762f636176652f706c616e796f757276697369742f696d616765732f44534330343937352e4a50473f6d617877696474683d363530266175746f726f746174653d66616c7365](https://github.com/bhyleee/bats_doppler_test/assets/15572692/fa614baf-ef07-47ab-adb6-61044697df23)
-
 Background
 
 Mexican free-tailed bats (commonly referred to as Brazillian free-tailed bats) are a common bat species found across much of North and South America. Due to their voracious appetite and large roosting numbers, free-tailed bats are believed to provide invaluable ecosystem services in the form of pest control.
@@ -32,12 +30,13 @@ This project highlights a computer vision algorithm based on an artificial neura
 
 - Python 3.10.8
 - Conda (recommended for environment management)
+- The program was created using a linux-based Macbook Pro ARM64 processor
 
 ## Installation and Setup
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/bhyleee/bats_doppler_test.git
+   git XXXXXXX
    cd doppler-radar-analysis
    
 2. Set up the conda environment
@@ -54,7 +53,13 @@ These models are hosted in the same repository as the sample data (Zenodo)
     ```bash
     python main.py [start_date] [end_date] [tower] --hours [hours] --start_time [start_time]
     ```
-    Replace [start_date], [end_date], [tower], [hours], and [start_time] with your desired values.
+    Replace [start_date], [end_date], [tower], [hours], and [start_time] with your desired values. 
+
+   Example:
+    ```bash
+    python main.py 2023-06-01 2023-06-01 KDAX --hours 1 --start_time 2000
+    ```
+
 2. Other Functionalities:
 ...
 

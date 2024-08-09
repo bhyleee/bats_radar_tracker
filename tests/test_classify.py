@@ -2,7 +2,7 @@ import pytest
 import pandas as pd
 import numpy as np
 from unittest.mock import patch, Mock
-from scripts.classify import normal_data, classify
+from ..scripts.classify import normal_data, classify
 
 # Assuming that you might have these constants in your classify.py. If not, adjust accordingly.
 MODELS_DIR = 'path_to_models_dir'
@@ -14,13 +14,13 @@ DATA_DIR = 'path_to_data_dir'
 def dummy_data():
     data = {
         'date': ['2023-01-01', '2023-01-02'],
-        'cor': [0.1, 0.2],
-        'pha': [0.1, 0.2],
-        'dif': [0.1, 0.2],
-        'ref': [0.1, 0.2],
-        'spw': [0.1, 0.2],
-        'vel': [0.1, 0.2],
-        'training_class': [10, 11]
+        'cor': [0.1, 0.1, 0.2, 0.2],
+        'pha': [0.1, 0.1, 0.2, 0.2],
+        'dif': [0.1, 0.1, 0.2, 0.2],
+        'ref': [0.1, 0.1, 0.2, 0.2],
+        'spw': [0.1, 0.1, 0.2, 0.2],
+        'vel': [0.1, 0.1, 0.2, 0.2],
+        'training_class': [10, 11, 12, 13]
     }
     df = pd.DataFrame(data)
     return df

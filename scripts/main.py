@@ -1,9 +1,9 @@
 import argparse
 
-from classify import classify
-from download import download
+from tools.classify import classify
+from tools.download import download
 # from aggregate import aggregate_date
-from utils import *
+from tools.utils import *
 
 
 def main(start_date, end_date, tower, hours, start_time):
@@ -11,16 +11,16 @@ def main(start_date, end_date, tower, hours, start_time):
     start_date_str = start_date.replace("-", "")
     # Step 1: Download data
     # Path to where you expect the downloaded data to reside
-    # expected_data_dir = DOPPLER_DIR.joinpath(str(start_date_str)) # Modify accordingly if different
+    expected_data_dir = DOPPLER_DIR.joinpath(str(start_date_str)) # Modify accordingly if different
     # #
-    # # Step 1: Download data
-    # if not data_already_downloaded(expected_data_dir):
-    #     doppler_dir = download(start_date, end_date, tower, hours)
-    # else:
-    #     print(f"Data for {start_date} to {end_date} already downloaded. Skipping download step.")
-    #     doppler_dir = expected_data_dir
+    # Step 1: Download data
+    if not data_already_downloaded(expected_data_dir):
+        doppler_dir = download(start_date, end_date, tower, hours, start_time)
+    else:
+        print(f"Data for {start_date} to {end_date} already downloaded. Skipping download step.")
+        doppler_dir = expected_data_dir
 
-    doppler_dir = download(start_date, end_date, tower, hours, start_time)
+    # doppler_dir = download(start_date, end_date, tower, hours, start_time)
 
     # Step 2: Classify the downloaded data
     # Note: Modify this part if there's a specific directory or other parameters to provide.
@@ -40,9 +40,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Process radar data.')
     parser.add_argument('start_date', type=str, help='Start date in the format YYYY-MM-DD')
     parser.add_argument('end_date', type=str, help='End date in the format YYYY-MM-DD')
-    parser.add_argument('tower', type=str, help='The radar tower ID')
+    parser.add_argument('tower', type=str, default='KDAX', help='The radar tower ID')
     parser.add_argument('--hours', type=int, default=10, help='Number of hours (default is 12).')
-    parser.add_argument('--start_time', type=int, default=2000, help='Start time default is 7pm (1900).')
+    parser.add_argument('--start_time', type=int, default=2000, help='Start time default is 8pm (2000).')
 
     args = parser.parse_args()
 

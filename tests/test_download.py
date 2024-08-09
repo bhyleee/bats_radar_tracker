@@ -1,6 +1,6 @@
 import unittest
 from unittest.mock import patch, Mock
-from scripts.download import download
+from ..scripts.download import download
 
 class TestDownload(unittest.TestCase):
 

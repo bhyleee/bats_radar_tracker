@@ -1,6 +1,5 @@
 import pytest
 
-
 # TODO: Add tests for aggregate.py when functionality is implemented
 
 def test_placeholder():

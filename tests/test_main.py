@@ -1,5 +1,5 @@
 import pytest
-from scripts.main import main
+from ..scripts.utils import *
 from unittest.mock import patch, MagicMock
 import pathlib
 import os
