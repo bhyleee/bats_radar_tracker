@@ -14,8 +14,8 @@ from tensorflow import keras
 
 BASE_DIR = pathlib.Path(__file__).parent.parent  # points to the 'scripts' directory
 DIRECTORY_ABOVE_BASE = BASE_DIR.parent
-MODELS_DIR = DIRECTORY_ABOVE_BASE.joinpath('models')
-DATA_DIR = DIRECTORY_ABOVE_BASE.joinpath('data')
+MODELS_DIR = BASE_DIR.joinpath('models')
+DATA_DIR = BASE_DIR.joinpath('data')
 
 current_date = datetime.today().strftime('%Y%m%d')
 
