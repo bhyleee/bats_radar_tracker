@@ -61,6 +61,8 @@ This project highlights a computer vision algorithm based on an artificial neura
 
 2. Model output: the application creates directories of both the individual classifed scenes and the aggregated scenes. The classified scenes are found in the data/classified directory. Temporal aggregation can be adjusted with modification of the code.
 
+3. A Google colab tutorial may be found here: https://colab.research.google.com/drive/1qEvrIpMOEopRm_VyE_GaqWnz7qNxe0mc?usp=sharing
+
 
 ## Dataset
 1. The reference data used for model training and testing are hosted on Zenodo or can be requested.
