@@ -29,8 +29,9 @@ This project highlights a computer vision algorithm based on an artificial neura
 ## Prerequisites
 
 - Python 3.10.8
-- Conda (recommended for environment management)
+- Conda (required for environment management)
 - The program was created using a linux-based Macbook Pro ARM64 processor
+- This model relies on a now-depreciated version of Keras (2.11)
 
 ## Installation and Setup
 
@@ -45,11 +46,9 @@ This project highlights a computer vision algorithm based on an artificial neura
     conda activate doppler_env
    
 3. Additional Setup
--Download the pretrained neural network (and other models if interested). 
-These models are hosted in the same repository as the sample data (Zenodo)
 
 ## Usage
-1. Downloading/Accessing
+1. Downloading/Accessing: From within the scripts directory:
     ```bash
     python main.py [start_date] [end_date] [tower] --hours [hours] --start_time [start_time]
     ```
@@ -57,14 +56,14 @@ These models are hosted in the same repository as the sample data (Zenodo)
 
    Example:
     ```bash
-    python main.py 2023-06-01 2023-06-01 KDAX --hours 1 --start_time 2000
+    python main.py 2023-06-01 2023-06-02 KDAX --hours 1 --start_time 2000
     ```
 
-2. Other Functionalities:
-...
+2. Model output: the application creates directories of both the individual classifed scenes and the aggregated scenes. The classified scenes are found in the data/classified directory. Temporal aggregation can be adjusted with modification of the code.
+
 
 ## Dataset
-1. The reference data used for model training and testing are hosted on in the data/reference directory hosted on Zenodo.
+1. The reference data used for model training and testing are hosted on Zenodo or can be requested.
 2. The radar data is sourced from the NOAA NEXRAD data repository and accessed through the Python packages Py-ART and NEXRADAWS.
 For the purposes of demonstration, a sample dataset is included in the data/ directory hosted on Zenodo.
 
