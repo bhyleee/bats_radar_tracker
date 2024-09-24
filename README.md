@@ -29,37 +29,45 @@ This project highlights a computer vision algorithm based on an artificial neura
 ## Prerequisites
 
 - Python 3.10.8
-- Conda (required for environment management)
-- The program was created using a linux-based Macbook Pro ARM64 processor
+- Conda/Miniconda (required for environment management)
+- The program was created using a linux-based Macbook Pro ARM64 processor. Code might not be compatible with Windows-based machines.
 - This model relies on a now-depreciated version of Keras (2.11)
 
 ## Installation and Setup
 
 1. **Clone the Repository**:
+   Open a terminal (Mac/Linux)
+   Navigate to the directory where you want to clone the repository
    ```bash
-   git XXXXXXX
-   cd doppler-radar-analysis
+   cd /path/to/your/directory
+   git clone https://github.com/bhyleee/bats_radar_tracker.git
+   cd bats_radar_tracker
    
-2. Set up the conda environment
-    ```bash
+3. Set up the conda environment
+   Ensure you have Conda installed.
+   ```bash
+   conda --version
+   ```
+   If you have Conda/Miniconda installed, create a new environment using the yml file.
+   ```bash
     conda env create -f environment.yml
-    conda activate doppler_env
+    conda activate bats_env
    
-3. Additional Setup
+5. Additional Setup
 
 ## Usage
-1. Downloading/Accessing: From within the scripts directory:
+1. Downloading/Accessing: From within the base project directory:
     ```bash
-    python main.py [start_date] [end_date] [tower] --hours [hours] --start_time [start_time]
+    python scripts/main.py [start_date] [end_date] [tower] --hours [hours] --start_time [start_time]
     ```
     Replace [start_date], [end_date], [tower], [hours], and [start_time] with your desired values. 
 
    Example:
     ```bash
-    python main.py 2023-06-01 2023-06-02 KDAX --hours 1 --start_time 2000
+    python scripts/main.py 2023-06-01 2023-06-02 KDAX --hours 1 --start_time 2000
     ```
 
-2. Model output: the application creates directories of both the individual classifed scenes and the aggregated scenes. The classified scenes are found in the data/classified directory. Temporal aggregation can be adjusted with modification of the code.
+2. Model output: the application creates directories of both the individual classifed scenes and the aggregated scenes. The classified scenes are found in the nested "classified" and "aggregated" directories. Temporal aggregation can be adjusted with modification of the code. The program creates nested directories based on the date and the run #; ie. data/doppler/{today's date}/run_*/{radar date}/aggregated.
 
 3. A Google colab tutorial may be found here: https://colab.research.google.com/drive/1qEvrIpMOEopRm_VyE_GaqWnz7qNxe0mc?usp=sharing
 
@@ -103,4 +111,4 @@ This project is licensed under the MIT License.
 
 ## Acknowledgements
 - Thanks to Py-ART, an essential library used in this project.
-- Appreciation to the team or individuals who contributed to this project.
+
