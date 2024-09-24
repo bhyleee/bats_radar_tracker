@@ -381,9 +381,10 @@ def aggregate_all_classified_data(classified_directory, aggregated_directory):
 
     Parameters:
     - classified_directory (str): Directory containing the classified radar data.
+    - aggregated_directory (str): Directory to save the aggregated data.
 
     Returns:
-    - None: The function saves aggregated data directly to the classified_directory.
+    - None: The function saves aggregated data directly to the aggregated_directory.
     """
 
     # List all the 'classified' files in the directory
@@ -407,18 +408,29 @@ def aggregate_all_classified_data(classified_directory, aggregated_directory):
     merge_dir.sort()
     with rio.open(merge_dir[0]) as src0:
         meta = src0.meta
-        arr1 = src0.read()
-        print(arr1.shape)
+        meta.update(dtype='float32')  # Update datatype if necessary
+        arr1 = src0.read(1).astype('float32')  # Read the first layer as float32 for accumulation
+        
+        # Replace NoData values with 0
+        nodata_value = src0.nodata
+        if nodata_value is not None:
+            arr1 = np.where(arr1 == nodata_value, 0, arr1)
 
         # Create/update aggregate file
         with rio.open(aggregated_file, 'w', **meta) as dst:
-            dst.write(arr1)
+            dst.write(arr1, 1)
 
             for layer in merge_dir[1:]:
                 with rio.open(layer) as src1:
-                    arr1 += src1.read()
+                    arr = src1.read(1).astype('float32')
+                    
+                    # Replace NoData values with 0
+                    if src1.nodata is not None:
+                        arr = np.where(arr == src1.nodata, 0, arr)
 
-                dst.write(arr1)
+                    arr1 += arr
+
+                dst.write(arr1, 1)
 
     print(f"Aggregated data saved to: {aggregated_file}.")
 # def aggregate_date(data_directory, output_directory):
