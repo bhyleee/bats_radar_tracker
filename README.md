@@ -104,7 +104,7 @@ f(x) = \mathrm{softmax}(W_3(\mathrm{relu}(W_2(\mathrm{relu}(W_1(\mathrm{relu}(W_
 
 
 ## Contributing
-Contributions are welcome! Please reach out here on github or via email at XXXX
+Contributions are welcome! Please reach out here on github or via email at brianlee52@ucsb.edu
 
 ## License
 This project is licensed under the MIT License.
